@@ -12,6 +12,8 @@ app.use(
     ieNoOpen: true,
     hsts: {maxAge: ninetyDaysInSeconds, force: true},
     dnsPrefetchControl: true,
+    noCache: true,
+    contentSecurityPolicy: { directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'", "trusted-cdn.com"] }},
   })
 );
 
