@@ -4,8 +4,11 @@ const app = express();
 const helmet = require("helmet");
 app.use(
   helmet({
-    hidePoweredBy,
+    hidePoweredBy: true,
     frameguard: {action: 'deny' },
+    xssFilter: true,
+    noSniff: true,
+    ieNoOpen: true,
   })
 );
 
