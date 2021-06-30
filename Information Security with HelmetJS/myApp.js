@@ -11,6 +11,7 @@ app.use(
     noSniff: true,
     ieNoOpen: true,
     hsts: {maxAge: ninetyDaysInSeconds, force: true},
+    dnsPrefetchControl: true,
   })
 );
 
