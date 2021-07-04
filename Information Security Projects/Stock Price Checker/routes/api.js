@@ -2,7 +2,7 @@
 
 const SPC  = require('../models');
 const fetch = require('node-fetch');
-const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
+
 
 
 async function createStock(stock, like, ip){
