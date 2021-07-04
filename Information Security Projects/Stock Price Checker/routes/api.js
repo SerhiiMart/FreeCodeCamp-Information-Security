@@ -10,6 +10,8 @@ async function createStock(stock, like, ip){
     symbol: stock,
     likes: like ? [ip] : [],
   })
+  const savedNew = await newStock.save();
+  return savedNew;
 }
 
 async function findStock(stock){
@@ -42,13 +44,23 @@ async function getStock(stock) {
 
 module.exports = function (app) {
   app.route('/api/stock-prices')
-    .get(function async (req, res){
+    .get(async function (req, res){
       const { stock, like } = req.query;
       const { symbol, latestPrice } = await getStock(stock);
       if (!symbol) {
         res.json({ stockData: {likes: like ? 1 : 0} });
         return;
       }
+      const oneStockData = await saveStock(symbol, like, req.ip);
+      console.log("One Stock Data", oneStockData);
+
+      req.json({
+        stockData: {
+          stock: symbol,
+          price: latestPrice,
+          likes: oneStockData.likes.length,
+        },
+      });
     });
     
 };
