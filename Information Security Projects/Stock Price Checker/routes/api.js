@@ -3,7 +3,6 @@
 require("dotenv").config();
 const Stocks  = require('../models');
 const fetch = require('node-fetch');
-const { json } = require('body-parser');
 
 const saveStock = (symbol, like, ip) =>
   Stocks.findOne({ symbol }).then((res) => {

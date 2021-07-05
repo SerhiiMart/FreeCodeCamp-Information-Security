@@ -20,12 +20,18 @@ app.use(cors({origin: '*'})); //For FCC testing purposes only
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(helmet.contentSecurityPolicy({
-	directives:{
-		defaultSrc: ["'self'"],
-    scriptSrc: ["'self'"],
-		styleSrc: ["'self'"]
-	}
+app.use(helmet({
+  frameguard: {
+    action: 'deny'
+  },
+  contentSecurityPolicy: { 
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      scriptSrc: ["'self'", "trusted-cdn.com"] 
+    }
+  },
+  dnsPrefetchControl: false
 }));
 
 app.enable('trust proxy')
