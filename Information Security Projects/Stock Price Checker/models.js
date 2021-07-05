@@ -3,10 +3,9 @@ let mongoose = require('mongoose')
 let {Schema} = mongoose
 
 let Stock_Price_Checker_Schema = new Schema({
-  name: { type: String, required: true },
-  likes: { type: [String], default: [] }, 
-  ips: [String],
+  symbol: { type: String, required: true },
+  likes: { type: [String], default: [] }
 })
-const Stock = mongoose.model("Stock", Stock_Price_Checker_Schema);
+const Stocks = mongoose.model("Stocks", Stock_Price_Checker_Schema);
 
-module.exports = Stock;
+module.exports = Stocks;
