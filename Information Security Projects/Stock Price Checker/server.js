@@ -5,7 +5,6 @@ const bodyParser  = require('body-parser');
 const cors        = require('cors');
 
 require("./DB-module");
-const expect = require('chai').expect;
 const helmet      = require('helmet')
 
 const apiRoutes         = require('./routes/api.js');
