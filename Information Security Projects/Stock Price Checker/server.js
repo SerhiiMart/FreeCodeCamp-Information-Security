@@ -5,7 +5,7 @@ const bodyParser  = require('body-parser');
 const cors        = require('cors');
 
 require("./DB-module");
-const helmet      = require('helmet')
+const helmet = require('helmet')
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
