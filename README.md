@@ -7,6 +7,6 @@ With the Information Security Certification, you'll build a secure web app with 
 You'll also build a TCP client, and an Nmap and port scanner in Python. This will help you learn the basics of penetration testing — an important component of good information security.
 
 
-##Information Security Projects: 
+#Information Security Projects: 
 
-#Stock Price Checker (Finished. Sort Of.)
+##Stock Price Checker (Finished. Sort Of.)
