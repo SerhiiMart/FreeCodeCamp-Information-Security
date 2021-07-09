@@ -4,8 +4,8 @@ const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
 
-
-require("./DB-module");//adding database connection
+require("./DB-module");
+const helmet = require("helmet");
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
@@ -19,6 +19,22 @@ app.use(cors({origin: '*'})); //For FCC testing purposes only
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+////helmet SecurityPolicy
+app.use(helmet({
+  frameguard: {
+    action: 'deny'
+  },
+  referrerPolicy: { policy: "same-origin" },
+  contentSecurityPolicy: { 
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      scriptSrc: ["'self'", "trusted-cdn.com"] 
+    }
+  },
+  dnsPrefetchControl: false
+}));
 
 //Sample front-end
 app.route('/b/:board/')
