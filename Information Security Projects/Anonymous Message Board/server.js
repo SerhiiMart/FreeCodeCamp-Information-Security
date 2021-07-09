@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 ////helmet SecurityPolicy
 app.use(helmet({
   frameguard: {
-    action: 'deny'
+    action: 'sameorigin'
   },
   referrerPolicy: { policy: "same-origin" },
   contentSecurityPolicy: { 
