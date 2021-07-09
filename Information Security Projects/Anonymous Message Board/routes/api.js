@@ -5,8 +5,7 @@ const Thread_Model = require("../mongoose-models").Thread;
 const Reply_Model = require("../mongoose-models").Reply;
 
 module.exports = function (app) {
-  app
-    .route("/api/threads/:board")
+  app.route("/api/threads/:board")
     .post((req, res) => {
       const { text, delete_password } = req.body;
       let board = req.body.board;
