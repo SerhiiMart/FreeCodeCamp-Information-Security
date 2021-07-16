@@ -1,25 +1,10 @@
 import Player from './Player.mjs';
 import Collectible from './Collectible.mjs';
+import { dimension } from './space.mjs';
 const socket = io();
 
 
-const canvasWidth = 640;
-const canvasHeight = 480;
-const border = 10;
-const title = 50; 
-
-const dimension = {
-  canvasWidth: canvasWidth,
-  canvasHeight: canvasHeight,
-  arenaSizeX: canvasWidth - 2 * border,
-  arenaSizeY: canvasHeight - 2 * border - title,
-  minX: border,
-  minY: border + title,
-  maxX: canvasWidth - border,
-  maxY: canvasHeight - border,
-}
-
-
+let tick;
 let playersList = [];
 let oxygenEntity;
 let playerEntity;
@@ -36,11 +21,13 @@ let oxygenImage = new Image();
 let spikeImage = new Image();
 
 const init = () => {
+  // get images
   meImage.src = 'public/img/green.png';
   otherImage.src = 'public/img/white.png';
   oxygenImage.src = 'public/img/oxygen.png';
   spikeImage.src = 'public/img/spikedball.png';
   
+  // create user
   socket.on('init', ({ id, players, oxygen, spike }) => {
     console.log(id, players,oxygen,spike);
     oxygenEntity = new Collectible(oxygen);
@@ -77,6 +64,7 @@ const init = () => {
       }
     }
   
+    // update
     socket.on('update', ({players:players,spike:spike,oxygen:oxygen,player:player}) => {
       spikeEntity = new Player(spike)
       playersList = players;
@@ -98,25 +86,29 @@ const update = () => {
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  context.fillStyle = '#1c4966';
+  // Set background color
+  context.fillStyle = '#333300';
   context.fillRect(0, 0, canvas.width, canvas.height);
 
+  // Create border for play field
   context.strokeStyle = '#45b6fe';
   context.strokeRect(dimension.minX, dimension.minY, dimension.arenaSizeX, dimension.arenaSizeY);
 
-  context.fillStyle = '#45b6fe';
+  // Controls text
+  context.fillStyle = '#ADFF2F';
   context.font = `13px 'Press Start 2P'`;
   context.textAlign = 'center';
   context.fillText('Controls', 80, 20);
   context.textAlign = 'center';
   context.fillText('WASD', 80, 40);
 
-  context.font = `40px 'Game'`;
-  context.fillText('Bubble survivor', 300, 40);
+  // Game title
+  context.font = `40px 'Modak'`;
+  context.fillText('Round Doom', 300, 40);
 
   if (playerEntity) {
     playerEntity.draw(context,meImage);
-    context.font = `26px 'Game'`;
+    context.font = `26px 'Modak'`;
     context.fillText(playerEntity.calculateRank(playersList), 560, 40);
     playersList.forEach((player)=> {
        if (player.id !== playerEntity.id) {

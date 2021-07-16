@@ -1,18 +1,4 @@
-const canvasWidth = 640;
-const canvasHeight = 480;
-const border = 10;
-const title = 50; 
-
-const dimension = {
-  canvasWidth: canvasWidth,
-  canvasHeight: canvasHeight,
-  arenaSizeX: canvasWidth - 2 * border,
-  arenaSizeY: canvasHeight - 2 * border - title,
-  minX: border,
-  minY: border + title,
-  maxX: canvasWidth - border,
-  maxY: canvasHeight - border,
-}
+import { dimension } from './space.mjs';
 
 class Player {
   constructor({x, y, score, id, radius = 30}) {
@@ -20,6 +6,7 @@ class Player {
     this.y = y;
     this.score = score;
     this.id = id;
+    // hitbox
     this.radius = radius;
     
   }
@@ -68,8 +55,6 @@ class Player {
 }
 try {
   module.exports = Player;
-} catch(e) {
-
-}
+} catch(e) {}
 
 export default Player;
