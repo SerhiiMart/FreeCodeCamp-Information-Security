@@ -2,4 +2,4 @@
 ## Anonymous Message Board (Finished. Sort Of.)
 ## Port Scanner (Finished.)
 ## SHA-1 Password CrackerPassed (Finished.)
-## Stock Price Checker (Working on...)
+## Stock Price Checker (Finished.)
